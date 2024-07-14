@@ -9,14 +9,16 @@
       </div>
       <div class="main__block main__block--right">
         <h2>BLOK DRUGI</h2>
-        <button class="main__block__--right__button--left" (click)="updateContent('replace')">ZASTĄP</button>
-        <button class="main__block__--right__button--right" (click)="updateContent('append')">DOKLEJ</button>
+        <div class="button-container">
+          <button class="main__block--right__button main__block--right__button--left" (click)="updateContent('replace')">ZASTĄP</button>
+          <button class="main__block--right__button main__block--right__button--right" (click)="updateContent('append')">DOKLEJ</button>
+        </div>
       </div>
     </section>
     <section class="main__content" id="content">
       <h2>Blok z długą nazwą która sama się przytnie</h2>
       <div id="textContainer">
-        <div *ngFor="let text of contentTexts">{{ text }}</div>
+        <span *ngFor="let text of contentTexts">{{ text }}</span>
       </div>
     </section>
     <app-footer class="footer"/>

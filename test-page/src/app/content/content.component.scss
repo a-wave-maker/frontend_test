@@ -45,6 +45,8 @@
       text-decoration: none;
       position: relative;
       text-align: center;
+      justify-self: center;
+      align-self: center;
       margin: 3rem 0;
       margin-top: 4rem;
       grid-area: title;
@@ -96,29 +98,34 @@
 
       &--right {
         justify-content: right;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
 
         @media (min-width: 940px) {
-          display: grid;
-          grid-template-areas: 
-          "title title"
-          "button--left button--right"
-          ;
-          grid-template-columns: 1fr 1fr;
+          align-items: center;
+        }
 
-          h2 {
-            grid-area: title;
-            display: flex;
-            justify-content: right;
+        h2 {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 1rem;
+        }
 
-            @media (min-width: 940px) {
-              justify-content: center;
-            }
+        .button-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: flex-end;
+          margin-top: 2rem;
+          width: 100%;
+
+          @media (min-width: 940px) {
+            flex-direction: row;
           }
         }
-        
-        button {
-          justify-self: center;
-          align-self: flex-start;
+
+        &__button {
           background-color: #0011ff00;
           color: #9EA4B2;
           border: 1px solid #fff;
@@ -130,25 +137,19 @@
           width: 150px;
           height: 50px;
 
-          
-
-          @media (min-width: 940px) {
-            transform: translateY(-100%);
-
+          &:hover {
+            background: linear-gradient(to right, orange, yellow);
+            color: white;
           }
         }
 
-        button:hover {
-          background: linear-gradient(to right, orange, yellow);
-          color: white;
-        }
-        
-        button--left {
-          grid-area: button--left;
+        &__button--left,
+        &__button--right {
+          margin: 0.5rem 1rem;
         }
 
-        button--right {
-          grid-area: button--right;
+        @media (min-width: 940px) {
+          flex-direction: column;
         }
       }
     }
@@ -194,6 +195,8 @@
       flex-direction: column;
       justify-content: flex-start;
       padding: 2rem;
+      padding-bottom: 10rem;
+      padding-top: 5rem;
       grid-area: content;
       color: #858891;
       min-width: 0;
@@ -207,6 +210,10 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         max-width: 80%;
+      }
+
+      @media (min-width: 940px) {
+        padding-top: 0;
       }
 
       #textContainer {

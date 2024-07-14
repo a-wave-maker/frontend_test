@@ -51,12 +51,16 @@ export class ContentService {
     }
   }
 
+  resetData(): void {
+    this.unusedTexts.push(...this.usedTexts);
+    this.usedTexts = [];
+    localStorage.setItem('unusedTexts', JSON.stringify(this.unusedTexts));
+    localStorage.setItem('usedTexts', JSON.stringify(this.usedTexts));
+  }
+
   getText(index: number, replace: boolean): string {
     if (replace) {
-      this.unusedTexts.push(...this.usedTexts);
-      this.usedTexts = [];
-      localStorage.setItem('unusedTexts', JSON.stringify(this.unusedTexts));
-      localStorage.setItem('usedTexts', JSON.stringify(this.usedTexts));
+      this.resetData();
     }
     if (this.unusedTexts.length === 0) {
       alert("No more unique texts available.");
@@ -79,10 +83,7 @@ export class ContentService {
       return "";
     }
     if (replace) {
-      this.unusedTexts.push(...this.usedTexts);
-      this.usedTexts = [];
-      localStorage.setItem('unusedTexts', JSON.stringify(this.unusedTexts));
-      localStorage.setItem('usedTexts', JSON.stringify(this.usedTexts));
+      this.resetData();
     }
     
     const randomIndex = Math.floor(Math.random() * unusedTexts.length);
