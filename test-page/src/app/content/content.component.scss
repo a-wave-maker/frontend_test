@@ -122,6 +122,8 @@
 
           @media (min-width: 940px) {
             flex-direction: row;
+            align-items: center;
+            justify-content: center;
           }
         }
 
@@ -210,6 +212,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         max-width: 80%;
+        margin-top: 1.5rem;
       }
 
       @media (min-width: 940px) {
