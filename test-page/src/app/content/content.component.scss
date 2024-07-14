@@ -1,0 +1,221 @@
+.main {
+    padding-top: 5rem;
+    background-color: #2A2D36;
+    color: #fff;
+    display: grid;
+    gap: 2rem;
+    grid-gap: 0.5rem;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+    min-height: 100vh;
+
+    grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 50fr;
+      grid-template-areas: 
+      "title"
+      "left"
+      "right"
+      "content"
+      "footer"
+    ;
+
+    @media (min-width: 540px) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: .5fr 1fr 1fr 1fr;
+      grid-template-areas: 
+      "title title"
+      "left right"
+      "content content"
+      "footer footer"
+    ;
+    }
+
+    @media (min-width: 940px) {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: .5fr 1fr 1fr;
+      grid-template-areas: 
+      "title title title"
+      "left right content"
+      "footer footer footer"
+    ;
+    }
+
+    &__title {
+      text-decoration: none;
+      position: relative;
+      text-align: center;
+      margin: 3rem 0;
+      margin-top: 4rem;
+      grid-area: title;
+      font-weight: lighter;
+    }
+
+    &__title::after {
+      position: absolute;
+      content: "";
+      height: 1px;
+      bottom: -1.5rem;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      width: 8rem;
+      background: white;
+    }
+
+    &__section {
+      display: contents;
+
+      &--left {
+        grid-area: left;
+        align-items: left;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      &--right {
+        grid-area: right;
+        align-items: right;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
+    &__block {
+      width: 100%;
+      display: grid;
+      padding: 1rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+
+      &--left {
+        justify-content: left;
+        display: flex;
+        flex-direction: column;
+      }
+
+      &--right {
+        justify-content: right;
+
+        @media (min-width: 940px) {
+          display: grid;
+          grid-template-areas: 
+          "title title"
+          "button--left button--right"
+          ;
+          grid-template-columns: 1fr 1fr;
+
+          h2 {
+            grid-area: title;
+            display: flex;
+            justify-content: right;
+
+            @media (min-width: 940px) {
+              justify-content: center;
+            }
+          }
+        }
+        
+        button {
+          justify-self: center;
+          align-self: flex-start;
+          background-color: #0011ff00;
+          color: #9EA4B2;
+          border: 1px solid #fff;
+          padding: 15px;
+          margin: 0.5rem;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: bold;
+          width: 150px;
+          height: 50px;
+
+          
+
+          @media (min-width: 940px) {
+            transform: translateY(-100%);
+
+          }
+        }
+
+        button:hover {
+          background: linear-gradient(to right, orange, yellow);
+          color: white;
+        }
+        
+        button--left {
+          grid-area: button--left;
+        }
+
+        button--right {
+          grid-area: button--right;
+        }
+      }
+    }
+
+    label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      margin: 0.7rem;
+      
+    }
+
+    input[type="radio"] {
+        appearance: none;
+        margin: 0 0.5rem 0 0;
+        font: inherit;
+        color: currentColor;
+        width: 1.8em;
+        height: 1.8em;
+        border: 0.22em solid currentColor;
+        border-radius: 50%;
+        transform: translateY(-0.075em);
+        display: grid;
+        place-content: center;
+
+        &::before {
+            content: "";
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em currentColor;
+        }
+
+        &:checked::before {
+            transform: scale(2);
+        }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 2rem;
+      grid-area: content;
+      color: #858891;
+      min-width: 0;
+
+      h2 {
+        align-self: center;
+        color: white;
+        margin: 0;
+        overflow: hidden;
+        padding-bottom: 1rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 80%;
+      }
+
+      #textContainer {
+        text-align: center;
+      }
+    }
+
+    .footer {
+      grid-area: footer;
+      margin-top: auto;
+    }
+}

@@ -1,0 +1,17 @@
+<footer class="footer">
+    <div class="footer__text">
+      CSS<br /> 
+      IS<br /> 
+      AWESOME
+    </div>
+    <div class="footer__middle-text">
+      <span class="line"></span>
+      nabthat
+      <span class="line"></span>
+    </div>
+    <button class="footer__button" [ngClass]="{'active': buttonActive}" (click)="toggleButton()">POKAŻ<i class="arrow down"></i></button>
+  </footer>
+  <div class="footer__frame" [ngClass]="{'footer__frame--visible': frameVisible}">
+    <button class="footer__frame__button" (click)="resetPage()"><i class="arrow-right"></i>ZRESETUJ USTAWIENIA</button>
+    <button class="footer__frame__button" (click)="appendName()"><i class="arrow-right"></i>POKAŻ DANE OSOBOWE</button>
+  </div>
