@@ -66,9 +66,23 @@ export class ContentService {
       alert("No more unique texts available.");
       return "";
     }
+    else if (this.unusedTexts.length === 1) {
+      const selectedText = this.unusedTexts[0];
+      this.unusedTexts = [];
+      this.usedTexts.push(selectedText);
+
+      localStorage.setItem('unusedTexts', JSON.stringify(this.unusedTexts));
+    localStorage.setItem('usedTexts', JSON.stringify(this.usedTexts));
+
+      return selectedText;
+    }
     const selectedText = this.unusedTexts[index];
     this.unusedTexts = this.unusedTexts.filter(text => text !== selectedText);
     this.usedTexts.push(selectedText);
+
+    console.log(this.unusedTexts);
+    console.log(index);
+    console.log(selectedText);
 
     localStorage.setItem('unusedTexts', JSON.stringify(this.unusedTexts));
     localStorage.setItem('usedTexts', JSON.stringify(this.usedTexts));
@@ -77,8 +91,7 @@ export class ContentService {
   }
 
   getRandomText(currentTexts: string[], replace: boolean): string {
-    const unusedTexts = this.unusedTexts.filter(text => !currentTexts.includes(text));
-    if (unusedTexts.length === 0 && !replace) {
+    if (this.unusedTexts.length === 0 && !replace) {
       alert("No more unique texts available.");
       return "";
     }
@@ -86,9 +99,13 @@ export class ContentService {
       this.resetData();
     }
     
-    const randomIndex = Math.floor(Math.random() * unusedTexts.length);
+    const randomIndex = Math.floor(Math.random() * this.unusedTexts.length);
 
     const selectedText = this.unusedTexts[randomIndex];
+
+    console.log(this.unusedTexts);
+    console.log(randomIndex);
+    console.log(selectedText);
 
     this.unusedTexts = this.unusedTexts.filter(text => text !== selectedText);
     this.usedTexts.push(selectedText);
